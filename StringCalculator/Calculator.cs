@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace StringCalculator
 {
-    public class Calculator
+    public static class Calculator
     {
         private const string SeparatorIdentifier = "//";
 
