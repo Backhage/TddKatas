@@ -6,7 +6,8 @@ namespace StringCalculator
 {
     public static class Calculator
     {
-        private const string SeparatorIdentifier = "//";
+        private const string DelimiterIdentifier = "//";
+        private const int FilterOutValuesAbove = 1000;
 
         public static int Add(string input)
         {
@@ -15,39 +16,67 @@ namespace StringCalculator
                 return 0;
             }
 
-            var separators = new List<char> { ',', '\n' };
-            if (ContainsUserDefinedSeparator(input))
+            var delimiters = new List<string> { ",", "\n" };
+            if (ContainsDelimiters(input))
             {
-                separators.Add(ExtractUserDefinedSeparator(input));
-                input = RemoveSeparatorInfo(input);
+                delimiters.AddRange(ExtractDelimiters(input));
+                input = RemoveDelimiters(input);
             }
 
-            IEnumerable<int> values = ExtractValues(input, separators);
+            IEnumerable<int> values = ExtractValues(input, delimiters);
             Validate(values);
 
             return values.Sum();
         }
 
-        private static bool ContainsUserDefinedSeparator(string input)
+        private static bool ContainsDelimiters(string input)
         {
-            return input.StartsWith(SeparatorIdentifier);
+            return input.StartsWith(DelimiterIdentifier);
         }
 
-        private static char ExtractUserDefinedSeparator(string input)
+        private static List<string> ExtractDelimiters(string input)
         {
-            return input[SeparatorIdentifier.Length];
+            var delimiterInfo = input.Substring(DelimiterIdentifier.Length, input.IndexOf('\n') - DelimiterIdentifier.Length);
+            var delimiters = new List<string>();
+            if (delimiterInfo.Contains('['))
+            {
+                delimiters.AddRange(ExtractBrackedDelimiters(delimiterInfo));
+            }
+            else
+            {
+                delimiters.Add(delimiterInfo);
+            }
+            return delimiters;
         }
 
-        private static string RemoveSeparatorInfo(string input)
+        private static List<string> ExtractBrackedDelimiters(string delimiterInfo)
         {
-            return input.Substring($"{SeparatorIdentifier}.\n".Length);
+            var delimiters = new List<string>();
+            while (delimiterInfo.Contains('['))
+            {
+                var delimiter = delimiterInfo.Substring(1, delimiterInfo.IndexOf(']') - 1);
+                delimiters.Add(delimiter);
+                delimiterInfo = delimiterInfo.Substring(1);
+                if (delimiterInfo.Contains('['))
+                {
+                    delimiterInfo = delimiterInfo.Substring(delimiterInfo.IndexOf('['));
+                }
+            }
+
+            return delimiters;
         }
 
-        private static IEnumerable<int> ExtractValues(string input, List<char> separators)
+        private static string RemoveDelimiters(string input)
+        {
+            return input.Substring(input.IndexOf('\n') + 1);
+        }
+
+        private static IEnumerable<int> ExtractValues(string input, List<string> separators)
         {
             return input
-                .Split(separators.ToArray())
-                .Select(s => int.Parse(s));
+                .Split(separators.ToArray(), StringSplitOptions.None)
+                .Select(s => int.Parse(s))
+                .Where(n => n <= FilterOutValuesAbove);
         }
 
         private static void Validate(IEnumerable<int> values)

@@ -15,13 +15,13 @@ namespace StringCalculatorTest
         }
 
         [Test]
-        public void TestDifferentSeparators()
+        public void TestDifferentDelimiters()
         {
             Assert.AreEqual(6, Calculator.Add("1\n2,3"));
         }
 
         [Test]
-        public void TestChangingSeparator()
+        public void TestChangingDelimiter()
         {
             Assert.AreEqual(7, Calculator.Add("//;\n3;4"));
         }
@@ -31,6 +31,25 @@ namespace StringCalculatorTest
         {
             Assert.Throws<ArgumentException>(() => Calculator.Add("-1"));
             Assert.Throws<ArgumentException>(() => Calculator.Add("1,-1"));
+        }
+
+        [Test]
+        public void TestTooLarge()
+        {
+            Assert.AreEqual(2, Calculator.Add("1001,2"));
+        }
+
+        [Test]
+        public void TestMulticharDelimiter()
+        {
+            Assert.AreEqual(6, Calculator.Add("//[***]\n4***2"));
+        }
+
+        [Test]
+        public void TestMultipleDelimiters()
+        {
+            Assert.AreEqual(6, Calculator.Add("//[*][%]\n1*2%3"));
+            Assert.AreEqual(10, Calculator.Add("//[**][%%%]\n1**2%%%3**4"));
         }
     }
 }
