@@ -5,6 +5,7 @@ using System;
 namespace StringCalculatorTest
 {
     [TestFixture]
+    [Category("Unit")]
     public class CalculationTests
     {
         public void TestAdd()

@@ -5,6 +5,7 @@ using static PrimeFactors.PrimeFactors;
 namespace PrimeFactorsTest
 {
     [TestFixture]
+    [Category("Unit")]
     public class PrimeFactorsTest
     {
         private List<int> List(params int[] ints)
