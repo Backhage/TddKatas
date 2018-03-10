@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCalculator", "StringC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCalculatorTest", "StringCalculatorTest\StringCalculatorTest.csproj", "{217EFFE3-B3C8-408E-85EA-7F794D87636A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeFactors", "PrimeFactors\PrimeFactors.csproj", "{D5E67C9F-8741-412D-8D9E-A65DE993C735}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeFactorsTest", "PrimeFactorsTest\PrimeFactorsTest.csproj", "{C22C23AC-354C-4542-92F9-E29EF5ABFA8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{217EFFE3-B3C8-408E-85EA-7F794D87636A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{217EFFE3-B3C8-408E-85EA-7F794D87636A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{217EFFE3-B3C8-408E-85EA-7F794D87636A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5E67C9F-8741-412D-8D9E-A65DE993C735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5E67C9F-8741-412D-8D9E-A65DE993C735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5E67C9F-8741-412D-8D9E-A65DE993C735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5E67C9F-8741-412D-8D9E-A65DE993C735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C22C23AC-354C-4542-92F9-E29EF5ABFA8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C22C23AC-354C-4542-92F9-E29EF5ABFA8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C22C23AC-354C-4542-92F9-E29EF5ABFA8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C22C23AC-354C-4542-92F9-E29EF5ABFA8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
